@@ -33,7 +33,7 @@ namespace GUI3206
             new Store(){Id=15, Name="K", Kind="편집샵", Location="충남", StartDate=230717},
 
             new Store(){Id=16, Name="orange cafe", Kind="카페", Location="제주도", StartDate=160603},
-            new Store(){Id=17, Name="정우요", Kind="카페", Location="강원", StartDate=090722},
+            new Store(){Id=17, Name="정우요", Kind="카페", Location="강원", StartDate=190722},
             new Store(){Id=18, Name="청그릭", Kind="카페", Location="충남", StartDate=200505},
             new Store(){Id=19, Name="스타벅스 경기점", Kind="카페", Location="경기", StartDate=210611},
             new Store(){Id=20, Name="가배도", Kind="카페", Location="경기", StartDate=231107},
@@ -42,12 +42,47 @@ namespace GUI3206
         public Form1()
         {
             InitializeComponent();
-            
+            storeBindingSource.DataSource = stores;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //전체 보기
+            storeBindingSource.DataSource = stores;
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //이름 오름차순으로 보기
+            storeBindingSource.DataSource = from store in stores
+                                            orderby store.Name
+                                            select store;
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //카페만 보기
+            storeBindingSource.DataSource = from store in stores
+                                            where store.Kind.Equals("카페")
+                                            select store;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //서울, 경기에 위치한 가게만 보기
+            storeBindingSource.DataSource = from store in stores
+                                            where store.Location.Equals("서울") || store.Location.Equals("경기")
+                                            select store;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //2020년 이후에 영업을 시작한 가게 보기
+            storeBindingSource.DataSource = from store in stores
+                                            where store.StartDate/10000 >= 20
+                                            orderby store.StartDate
+                                            select store;
         }
     }
 }

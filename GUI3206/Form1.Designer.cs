@@ -34,15 +34,15 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.storeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kindDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.locationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.startDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.storeBindingSource)).BeginInit();
+            this.storeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -63,6 +63,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "이름 오름차순으로 보기";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -70,8 +71,9 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(144, 93);
             this.button3.TabIndex = 3;
-            this.button3.Text = "음식점만 보기";
+            this.button3.Text = "카페만 보기";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -81,6 +83,7 @@
             this.button4.TabIndex = 4;
             this.button4.Text = "서울, 경기에 위치한 가게만 보기";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -88,15 +91,14 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(144, 93);
             this.button5.TabIndex = 5;
-            this.button5.Text = "최근에 영업을 시작한 순으로 보기";
+            this.button5.Text = "2020년 이후에 영업을 시작한 가게 보기";
             this.button5.UseVisualStyleBackColor = true;
-            // 
-            // storeBindingSource
-            // 
-            this.storeBindingSource.DataSource = typeof(GUI3206.Store);
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -108,8 +110,9 @@
             this.dataGridView1.DataSource = this.storeBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 111);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 327);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 514);
             this.dataGridView1.TabIndex = 6;
             // 
             // idDataGridViewTextBoxColumn
@@ -117,36 +120,45 @@
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // kindDataGridViewTextBoxColumn
             // 
             this.kindDataGridViewTextBoxColumn.DataPropertyName = "Kind";
             this.kindDataGridViewTextBoxColumn.HeaderText = "Kind";
             this.kindDataGridViewTextBoxColumn.Name = "kindDataGridViewTextBoxColumn";
+            this.kindDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // locationDataGridViewTextBoxColumn
             // 
             this.locationDataGridViewTextBoxColumn.DataPropertyName = "Location";
             this.locationDataGridViewTextBoxColumn.HeaderText = "Location";
             this.locationDataGridViewTextBoxColumn.Name = "locationDataGridViewTextBoxColumn";
+            this.locationDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // startDateDataGridViewTextBoxColumn
             // 
             this.startDateDataGridViewTextBoxColumn.DataPropertyName = "StartDate";
             this.startDateDataGridViewTextBoxColumn.HeaderText = "StartDate";
             this.startDateDataGridViewTextBoxColumn.Name = "startDateDataGridViewTextBoxColumn";
+            this.startDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // storeBindingSource
+            // 
+            this.storeBindingSource.DataSource = typeof(GUI3206.Store);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 637);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -154,9 +166,10 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
-            this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.storeBindingSource)).EndInit();
+            this.RightToLeftLayout = true;
+            this.Text = "3206 백지민";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
